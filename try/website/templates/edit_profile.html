@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='edit-profile-styles.css') }}">
+<form method="post">
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="account-settings">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <img src="{{user.image}}" alt="Maxwell Admin">
+                            </div>
+                            <h5 class="user-name">{{user.full_name}}</h5>
+                            <h5 class="user-name">{{user.country}}</h5>
+                            <h6 class="user-name">{{user.age}}</h6>
+                            <h6 class="user-email">{{user.email}}</h6>
+
+                        </div>
+                        <div class="about">
+                            <h5>About</h5>
+                            <p>{% if user.league_player %}
+                                League Of Legends Player<br>
+                                {% endif %}
+                                {% if user.cs_player %}
+                                Counter Strike Player<br>
+                                {% endif %}
+                                {% if user.fortnite_player %}
+                                Fortnite Player<br>
+                                {% endif %}
+                                {% if user.cod_player %}
+                                Call Of Duty Player<br>
+                                {% endif %}
+                                {% if user.r6_player %}
+                                Rainbow 6 Player<br>
+                                {% endif %}
+                                {% if user.minecraft_player %}
+                                MineCraft Player<br>
+                                {% endif %}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" name='fullname' placeholder="Enter full name">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="eMail">Github</label>
+                                <input type="text" class="form-control" id="github" name='github' placeholder="Enter your github username">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Discord</label>
+                                <input type="text" class="form-control" id="discord" name='discord' placeholder="Enter your discord name and tag">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="website">Image URL</label>
+                                <input type="url" class="form-control" id="image" name='image' placeholder="Image URL">
+                            </div>
+                        </div>
+                    </div>
+<hr>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <button type="button" id="sub_cancel" name="submit" class="btn btn-secondary" onclick="location.href='/profile'">Cancel
+                                </button>
+                                <button type="submit" class="btn btn-primary">update</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</form>

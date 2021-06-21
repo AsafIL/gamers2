@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-left: 200px">
+    <div class="main-body">
+        <br><br><br>
+        <!-- /Breadcrumb -->
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="{{user.image}}" alt="Admin"
+                                 class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4 style="color: gray">{{user.nick_name}}</h4>
+                                <p class="text-secondary mb-1" style="color: white">{{user.age}}</p>
+                                <p class="text-muted font-size-sm" style="color: white">{{user.country}}</p>
+                                {% if user == current_user %}
+                                <button class="btn btn-primary" type="button" onclick="location.href='/edit-profile'">Edit
+                                </button>
+                                {% else %}
+                                NO
+                                {% for user, situation in found_users_list %}
+                                {% if situation == "Add" %}
+                                <a class="list-group-item list-group-item-action">
+                                    <form action="" method="POST">
+                                        <button type="submit" class="btn btn-outline-success">{{situation}}</button>
+                                        <input type="text" class="form-control" value={{user}},{{situation}} name=friend
+                                               style="display:none">
+                                    </form>
+                                </a>
+                                
+                                {% endif %}
+                                {% if situation == "Accept" %}
+                                <a class="list-group-item list-group-item-action">
+                                    <form action="" method="POST">
+                                        <button type="submit" class="btn btn-outline-success">{{situation}}</button>
+                                        <input type="text" class="form-control" value={{user}},{{situation}} name=friend
+                                               style="display:none">
+                                    </form>
+                                </a>
+                                {% endif %}
+                                {% if situation == "Pending" %}
+                                <a class="list-group-item list-group-item-action" style="text-align:center">
+                                    <button type="submit" class="btn btn-success disabled">{{situation}}</button>
+                                </a>
+                                {% endif %}
+                                {% if situation == "Friend" %}
+                                <a class="list-group-item list-group-item-action" style="text-align:center">
+                                    <button type="submit" class="btn btn-success disabled">{{situation}}</button>
+                                </a>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                Discord
+                            </h6>
+                            <span class="text-secondary">{{user.discord}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-github mr-2 icon-inline">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                                Github
+                            </h6>
+                            <span class="text-secondary">{{user.github}}</span>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+                <div class="card bg-light mb-3" style="max-width: 30rem;">
+                    <div class="card-body">
+
+                            <p class="card-text">
+                                <h6 class="mb-0" style="color: gray">Full Name</h6>
+
+                            <p class="card-text">
+                                {{user.full_name}}
+
+
+                        <hr>
+
+                            <p class="card-text">
+                                <h6 class="mb-0" style="color: gray">Email</h6>
+
+                            <p class="card-text">
+                                {{user.email}}
+
+                        <hr>
+
+                            <p class="card-text">
+                                <h6 class="mb-0" style="color: gray">Gender</h6>
+
+                            <p class="card-text">
+                                {{user.gender}}
+
+                        <hr>
+
+                            <p class="card-text">
+                                <h6 class="mb-0" style="color: gray">games</h6>
+
+                            {% if user.fortnite_player %}
+                            <p class="card-text">
+                                Fortnite player
+
+                            {% endif %}
+                            {% if user.cs_player %}
+                            <p class="card-text">
+                                Counter Strike player
+
+                            {% endif %}
+                            {% if user.minecraft_player %}
+                            <p class="card-text">
+                                Minecraft player
+
+                            {% endif %}
+                            {% if user.r6_player %}
+                            <p class="card-text">
+                                Rainbow 6 player
+
+                            {% endif %}
+                            {% if user.cod_player %}
+                            <p class="card-text">
+                                Call Of Duty player
+
+                            {% endif %}
+                            {% if user.league_player %}
+                            <p class="card-text">
+                                League Of Legends player
+
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

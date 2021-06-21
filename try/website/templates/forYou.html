@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}ForYou{% endblock %}
+
+{% block content %}
+<br><br><br><br><br>
+<div class="card border-primary mb-3" style="max-width: 20rem;margin-left: auto;margin-right: auto;">
+    <div class="d-flex flex-column align-items-center text-center">
+        <img src="{{user.image}}" alt="Admin"
+             class="rounded-circle" width="150">
+        <div class="card-body">
+            <h5 class="card-title">{{user.nick_name}}</h5>
+            <p class="card-text">{{user.age}}</p>
+        </div>
+        <div class="col-sm-3">
+            <h6 class="mb-0" style="color: gray">{{user.country}}</h6>
+        </div>
+        {% if user.fortnite_player %}
+        <div class="col-sm-9 text-secondary">
+            Fortnite player
+        </div>
+        {% endif %}
+        {% if user.cs_player %}
+        <div class="col-sm-9 text-secondary">
+            Counter Strike player
+        </div>
+        {% endif %}
+        {% if user.minecraft_player %}
+        <div class="col-sm-9 text-secondary">
+            Minecraft player
+        </div>
+        {% endif %}
+        {% if user.r6_player %}
+        <div class="col-sm-9 text-secondary">
+            Rainbow 6 player
+        </div>
+        {% endif %}
+        {% if user.cod_player %}
+        <div class="col-sm-9 text-secondary">
+            Call Of Duty player
+        </div>
+        {% endif %}
+        {% if user.league_player %}
+        <div class="col-sm-9 text-secondary">
+            League Of Legends player
+        </div>
+        {% endif %}
+
+        <hr>
+
+
+        <form action="" method="POST">
+            <button style="margin-left: 60px" type="submit" class="btn btn-primary">Send Friend Request</button>
+            <input type="text" class="form-control" value={{user}} id="friend" name=friend style="display:none">
+        </form>
+    </div>
+
+
+    <br>
+    <button class="btn btn-primary" type="button" onclick="location.href='/forYou'">Next</button>
+</div>
+<script>var user = document.getElementById('friend')
+console.log(user.value)</script>
+
+
+{% endblock %}

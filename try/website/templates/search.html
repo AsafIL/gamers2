@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<form method="post" action="">
+    <div class="form-group">
+        <br>
+        <br>
+        <br>
+
+        <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Search for friends!"
+        />
+        <hr>
+        <fieldset class="form-group" style="margin-left: 520px">
+            <div class="form-check">
+                <label class="form-check-label" style="color: white">
+                    <input type="radio" class="form-check-input" name="option" id="byname"
+                           value="byname" checked="">
+                    Search By Nick Name
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label" style="color: white">
+                    <input type="radio" class="form-check-input" name="option" id="bygame"
+                           value="bygame">
+                    Search By Game
+                </label>
+            </div>
+
+        </fieldset>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Search!</button>
+    </div>
+</form>
+<hr>
+{% for user in founded_users %}
+
+    <div class="card border-primary mb-3" style="max-width: 25rem; display: inline-block">
+
+        <div class="d-flex flex-column align-items-center text-center">
+            <img src="{{user.image}}" alt="Admin"
+                 class="rounded-circle" width="150">
+            <div class="card-body">
+                <h5 class="card-title">{{user.nick_name}}</h5>
+                <p class="card-text">{{user.age}}</p>
+            </div>
+            <div class="col-sm-3">
+                <h6 class="mb-0" style="color: gray">{{user.country}}</h6>
+            </div>
+            {% if user.fortnite_player %}
+            <div class="col-sm-9 text-secondary">
+                Fortnite player
+            </div>
+            {% endif %}
+            {% if user.cs_player %}
+            <div class="col-sm-9 text-secondary">
+                Counter Strike player
+            </div>
+            {% endif %}
+            {% if user.minecraft_player %}
+            <div class="col-sm-9 text-secondary">
+                Minecraft player
+            </div>
+            {% endif %}
+            {% if user.r6_player %}
+            <div class="col-sm-9 text-secondary">
+                Rainbow 6 player
+            </div>
+            {% endif %}
+            {% if user.cod_player %}
+            <div class="col-sm-9 text-secondary">
+                Call Of Duty player
+            </div>
+            {% endif %}
+            {% if user.league_player %}
+            <div class="col-sm-9 text-secondary">
+                League Of Legends player
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+
+        <form action="" method="POST">
+            <button style="margin-left: 70px;margin-right: 70px" type="submit" class="btn btn-primary">Send Friend Request</button>
+            <input type="text" class="form-control" value={{user}} name='friend' style="display:none">
+
+        </form>
+<br>
+
+    </div>
+
+{% endfor %}
+
+{% endblock %}
